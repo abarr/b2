@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= csrf_meta_tag() %>
+    <%= live_title_tag assigns[:page_title] || "B2" %>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </head>
+  <body class="font-sans antialiased">
+    <%= if get_flash(@conn, :error) || get_flash(@conn, :info) do %>
+      <div  class="fixed top-10 inset-x-0 pb-2 sm:pb-5">
+        <div class="max-w-screen-xl mx-auto px-2 sm:px-6 lg:px-8">
+          <%= if get_flash(@conn, :error) do %>
+            <div class="p-2 rounded-lg bg-red-900 shadow-lg sm:p-3">
+          <% end %>
+          <%= if get_flash(@conn, :info) do %>
+            <div class="p-2 rounded-lg bg-blue-900 shadow-lg sm:p-3">
+          <% end %>
+            <div class="flex items-center justify-between flex-wrap">
+              <div class="w-0 flex-1 flex items-center">
+                <%= if get_flash(@conn, :error) do %>
+                  <span class="flex p-2 rounded-lg bg-red-800">
+                <% end %>
+                <%= if get_flash(@conn, :info) do %>
+                  <span class="flex p-2 rounded-lg bg-blue-800">
+                <% end %>
+
+                  <!-- Heroicon name: speakerphone -->
+                  <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                  </svg>
+                </span>
+                <p class="ml-3 font-medium text-white truncate">
+                  <span class="md:hidden">
+                    <%= get_flash(@conn, :error) %><%= get_flash(@conn, :info) %>
+                  </span>
+                  <span class="hidden md:inline">
+                    <%= get_flash(@conn, :error) %><%= get_flash(@conn, :info) %>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+
+    <%= @inner_content %>
+
+  </body>
+</html>

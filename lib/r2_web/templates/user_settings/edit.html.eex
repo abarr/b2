@@ -1,0 +1,201 @@
+      <!-- Page title & actions -->
+      <div class="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+        <div class="flex-1 min-w-0">
+          <h1 class="text-lg font-medium leading-6 text-gray-900 sm:truncate">
+            Profile
+          </h1>
+        </div>
+        <%# <div class="mt-4 flex sm:mt-0 sm:ml-4">
+          <span class="order-1 ml-3 shadow-sm rounded-md sm:order-0 sm:ml-0">
+            <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out">
+              Share
+            </button>
+          </span>
+          <span class="order-0 sm:order-1 sm:ml-3 shadow-sm rounded-md">
+            <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-purple-600 hover:bg-purple-500 focus:outline-none focus:shadow-outline-purple focus:border-purple-700 active:bg-orange-700 transition duration-150 ease-in-out">
+              Create
+            </button>
+          </span>
+        </div> %>
+      </div>
+
+    <div class="px-4 mt-6 sm:px-6 lg:px-8 grid grid-cols-4">
+      <div class="col-span-4 lg:col-span-3 xl:col-span-3">
+        <%= f = form_for @email_changeset, "#", phx_change: "validate_user", phx_submit: "save_user" %>
+          <div>
+            <div class="  pt-8">
+              <div>
+                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                  Personal Information
+                </h3>
+              </div>
+              <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                <div class="sm:col-span-3">
+                  <label for="saluation" class="block text-sm font-medium leading-5 text-gray-700">
+                    Salutation
+                  </label>
+                  <div class="mt-1 rounded-md shadow-sm">
+                    <%= select f, :salutation, @salutations, [class: "mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"] %>
+                  </div>
+                  <%= error_tag f, :salutation %>
+                </div>
+              </div>
+              <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+
+                <div class="sm:col-span-3">
+                  <label for="firstname" class="block text-sm font-medium leading-5 text-gray-700">
+                    First name
+                  </label>
+                  <div class="mt-1 rounded-md shadow-sm">
+                    <%= text_input f, :firstname, [ phx_debouce: "blur" ,class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"] %>
+                  </div>
+                  <%= error_tag f, :firstname %>
+                </div>
+
+                <div class="sm:col-span-3">
+                  <label for="lastname" class="block text-sm font-medium leading-5 text-gray-700">
+                    Last name
+                  </label>
+                  <div class="mt-1 rounded-md shadow-sm">
+                    <%= text_input f, :lastname, [phx_debouce: "blur", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"] %>
+                  </div>
+                  <%= error_tag f, :lastname %>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="mt-8 border-t border-gray-200 pt-5">
+            <div class="flex justify-end">
+              <span class="inline-flex rounded-md shadow-sm">
+                <button type="button" class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
+                  Cancel
+                </button>
+              </span>
+              <span class="ml-3 inline-flex rounded-md shadow-sm">
+                 <%= submit "Change details", phx_disable_with: "Saving ....", class: "inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-orange-600 hover:bg-orange-500 focus:outline-none focus:border-orange-700 focus:shadow-outline-orange active:bg-orange-700 transition duration-150 ease-in-out" %>
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="px-4 mt-6 sm:px-6 lg:px-8 grid grid-cols-4">
+      <div class="col-span-4 lg:col-span-3 xl:col-span-3">
+        <%= f = form_for @email_changeset, "#", phx_change: "validate_user_email", phx_submit: "save_user_email" %>
+          <div>
+            <div class="  pt-8">
+              <div>
+                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                  Change Email
+                </h3>
+              </div>
+
+              <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+
+                <div class="sm:col-span-6">
+                  <label for="email" class="block text-sm font-medium leading-5 text-gray-700">
+                    Email address
+                  </label>
+                  <div class="mt-1 rounded-md shadow-sm">
+                    <%= text_input f, :email, [phx_debouce: "blur", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"] %>
+                  </div>
+                  <%= error_tag f, :email %>
+                </div>
+
+                <div class="sm:col-span-6">
+                  <label for="current_password" class="block text-sm font-medium leading-5 text-gray-700">
+                    Password
+                  </label>
+                  <div class="mt-1 rounded-md shadow-sm">
+                    <%= password_input f, :current_password, name: "current_password", id: "current_password_for_email", class: "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+
+                  </div>
+                  <%= error_tag f, :current_password %>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="mt-8 border-t border-gray-200 pt-5">
+            <div class="flex justify-end">
+              <span class="inline-flex rounded-md shadow-sm">
+                <button type="button" class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
+                  Cancel
+                </button>
+              </span>
+              <span class="ml-3 inline-flex rounded-md shadow-sm">
+                 <%= submit "Change Email", phx_disable_with: "Saving ....", class: "inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-orange-600 hover:bg-orange-500 focus:outline-none focus:border-orange-700 focus:shadow-outline-orange active:bg-orange-700 transition duration-150 ease-in-out" %>
+              </span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+<div class="px-4 mt-6 sm:px-6 lg:px-8 grid grid-cols-4">
+  <div class="col-span-4 lg:col-span-3 xl:col-span-3">
+  <%= f = form_for @password_changeset, "#", phx_change: "validate", phx_submit: "save" %>
+
+    <div>
+
+      <div class=" pt-8">
+        <div>
+          <h3 class="text-lg leading-6 font-medium text-gray-900">
+            Change Password
+          </h3>
+
+        </div>
+        <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+          <div class="sm:col-span-6">
+            <label for="password" class="block text-sm font-medium leading-5 text-gray-700">
+              New Password
+            </label>
+            <div class="mt-1 rounded-md shadow-sm">
+              <%= password_input f, :password, class: "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"%>
+            </div>
+            <%= error_tag f, :password %>
+          </div>
+
+
+          <div class="sm:col-span-6">
+            <label for="password_confirmation" class="block text-sm font-medium leading-5 text-gray-700">
+              Password Confirmation
+            </label>
+            <div class="mt-1 rounded-md shadow-sm">
+              <%= password_input f, :password_confirmation, class: "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"%>
+            </div>
+            <%= error_tag f, :password_confirmation %>
+          </div>
+
+          <div class="sm:col-span-6">
+            <label for="current_password" class="block text-sm font-medium leading-5 text-gray-700">
+              Current Password
+            </label>
+            <div class="mt-1 rounded-md shadow-sm">
+              <%= password_input f, :current_password, class: "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"%>
+            </div>
+            <%= error_tag f, :current_password %>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="mt-8 border-t border-gray-200 pt-5">
+      <div class="flex justify-end">
+        <span class="inline-flex rounded-md shadow-sm">
+          <button type="button" class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
+            Cancel
+          </button>
+        </span>
+        <span class="ml-3 inline-flex rounded-md shadow-sm">
+           <%= submit "Change password", class: "inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-orange-600 hover:bg-orange-500 focus:outline-none focus:border-orange-700 focus:shadow-outline-orange active:bg-orange-700 transition duration-150 ease-in-out" %>
+        </span>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>

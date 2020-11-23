@@ -1,0 +1,65 @@
+<%= if live_flash(@flash, :error) || live_flash(@flash, :info) do %>
+  <%= if live_flash(@flash, :error) do %>
+    <div phx-click="lv:clear-flash" phx-value-key="error" class="fixed bottom-0 inset-x-0 pb-2 sm:pb-5">
+  <% end %>
+  <%= if live_flash(@flash, :info) do %>
+    <div phx-click="lv:clear-flash" phx-value-key="info" class="fixed bottom-0 inset-x-0 pb-2 sm:pb-5">
+  <% end %>
+        <div class="max-w-screen-xl mx-auto px-2 sm:px-6 lg:px-8">
+          <%= if live_flash(@flash, :error) do %>
+            <div class="p-2 rounded-lg bg-red-900 shadow-lg sm:p-3">
+          <% end %>
+          <%= if live_flash(@flash, :info) do %>
+            <div class="p-2 rounded-lg bg-blue-900 shadow-lg sm:p-3">
+          <% end %>
+            <div class="flex items-center justify-between flex-wrap">
+              <div class="w-0 flex-1 flex items-center">
+                <%= if live_flash(@flash, :error) do %>
+                  <span class="flex p-2 rounded-lg bg-red-800">
+                <% end %>
+                <%= if live_flash(@flash, :info) do %>
+                  <span class="flex p-2 rounded-lg bg-blue-800">
+                <% end %>
+
+            <!-- Heroicon name: speakerphone -->
+            <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+            </svg>
+          </span>
+          <p class="ml-3 font-medium text-white truncate">
+            <span class="md:hidden">
+               <%= live_flash(@flash, :error) %><%= live_flash(@flash, :info) %>
+            </span>
+            <span class="hidden md:inline">
+              <%= live_flash(@flash, :error) %><%= live_flash(@flash, :info) %>
+            </span>
+          </p>
+        </div>
+
+        <div class="order-2 flex-shrink-0 sm:order-3 sm:ml-2">
+          <%= if live_flash(@flash, :error) do %>
+                  <button type="button" class="-mr-1 flex p-2 rounded-md hover:bg-red-500 focus:outline-none focus:bg-red-500 transition ease-in-out duration-150" aria-label="Dismiss">
+            <!-- Heroicon name: x -->
+            <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+                <% end %>
+                <%= if live_flash(@flash, :info) do %>
+                  <button type="button" class="-mr-1 flex p-2 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500 transition ease-in-out duration-150" aria-label="Dismiss">
+            <!-- Heroicon name: x -->
+            <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+                <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>
+
+<%= @inner_content %>
